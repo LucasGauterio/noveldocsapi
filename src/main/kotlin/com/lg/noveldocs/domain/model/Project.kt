@@ -1,6 +1,7 @@
 package com.lg.noveldocs.domain.model
 
 data class Project(
+    val id: String,
     val projectName: String,
     val description: String,
     val finishWritingDate: String,

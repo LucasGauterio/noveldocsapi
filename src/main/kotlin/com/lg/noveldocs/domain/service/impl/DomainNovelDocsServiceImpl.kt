@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class DomainNovelDocsService(private val novelDocsRepository: NovelDocsRepository) : DomainNovelDocsService {
+class DomainNovelDocsServiceImpl(private val novelDocsRepository: NovelDocsRepository) : DomainNovelDocsService {
 
     override fun getNovelDocsById(id: String): NovelDocs? {
         return novelDocsRepository.findById(id).orElse(null)
@@ -23,8 +23,8 @@ class DomainNovelDocsService(private val novelDocsRepository: NovelDocsRepositor
 
     override fun updateNovelDocs(updatedNovelDocs: NovelDocs) {
         // Update the properties of existingNovelDocs with the values from updatedNovelDocs
-        var existingNovelDocs = getNovelDocsById(updatedNovelDocs.id)
-        if(existingNovelDocs!==null)
-            novelDocsRepository.save(existingNovelDocs)
+        if(exists(updatedNovelDocs.id)){
+            novelDocsRepository.save(updatedNovelDocs)
+        }
     }
 }
